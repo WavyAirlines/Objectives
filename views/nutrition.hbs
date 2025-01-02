@@ -1,0 +1,53 @@
+
+<body class="nutritionpg">
+
+  <div class="macro-tracker-container">
+  
+
+    <!-- Food Search -->
+    <section class="food-search-section">
+      <h1 class="macro-tracker-title">Macro Tracker</h1>
+      <input type="text" id="food-query" placeholder="Search for food">
+      <button class="macrobutton" onclick="searchFood()">Search</button>
+      <div id="food-results"></div>
+    </section>
+
+   <!-- Food Log Form -->
+  <section class="logAside">
+<section class="food-log-section">
+  <h1>Log Your Food</h1>
+  <form id="foodLogForm">
+  <input type="date" id="foodLogDate" required>
+  <div id="selected-foods">
+    <!-- Selected foods will be dynamically added here -->
+  </div>
+  <button class="macrobutton" type="submit">Save to Log</button>
+</form>
+
+</section>
+
+
+    <!-- Barcode Scanner -->
+    <section class="macro-tracker-section barcode-scanner-section">
+      <h1 class="section-title">Scan Food Barcode</h1>
+      <button class="macrobutton" onclick="startScanner()">Start Scanner</button>
+      <div class="scanner-container" id="scanner"></div>
+      <div class="barcode-results" id="barcode-results"></div>
+    </section>
+
+    <!-- Photo Upload -->
+    <section class="macro-tracker-section photo-upload-section">
+      <h1 class="section-title">Upload a Photo of Your Food</h1>
+      <input type="file" class="input-field photo-input" id="food-photo" accept="image/*">
+      <button class="macrobutton" onclick="uploadPhoto()">Upload</button>
+      <div class="photo-results" id="photo-results"></div>
+    </section>
+  </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+  <script src="/javascripts/macros.js"></script>
+  <script src="/javascripts/foodLog.js"></script>
+
+</body>
+</html>

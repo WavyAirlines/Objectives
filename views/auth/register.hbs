@@ -1,0 +1,28 @@
+<body class="regBody">
+<div class="form-container">
+<h1 class="form-title">Register</h1>
+<h4 class="form-alert">Password: Min 8 chars, 1 digit, 1 upper, 1 lower</h4>
+</div>
+<div class="form-container2">
+<form method="post" class="register-form">
+    <fieldset class="form-group">
+        <label for="username" class="form-label">Username: *</label>
+        <input name="username" id="username" class="form-control" required />
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="password" class="form-label">Password: *</label>
+        <input name="password" id="password" class="form-control" required type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+        <img src="/images/show.png" alt="Show/Hide" class="password-toggle" id="imgShowHide" onclick="showHide();" />    
+    </fieldset> 
+    <fieldset class="form-group">
+        <label for="confirm" class="form-label">Confirm: *</label>
+        <input name="confirm" id="confirm" class="form-control" required type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onkeyup="return checkPassword();" />
+        <span class="password-message" id="pwMsg"></span>
+    </fieldset>
+    <button class="macrobutton" onclick="return checkPassword();" href="./login.hbs">
+        <i class="bi bi-person-fill-add"></i> Register
+    </button>
+</form>
+</div>
+</body>
+

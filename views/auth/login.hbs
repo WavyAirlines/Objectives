@@ -1,0 +1,25 @@
+<body class="regBody">
+<div class="form-container">
+<h1 class="form-title">Login</h1>
+{{#if messages}}
+    <h4 class="form-alert form-alert-danger">Invalid Login</h4>
+{{else}}
+    <h4 class="form-alert form-alert-secondary">Please enter your credentials</h4>
+{{/if}}
+    </div>
+        <div class="form-container2">
+<form method="post" class="login-form">
+    <fieldset class="form-group">
+        <label for="username" class="form-label">Username: *</label>
+        <input name="username" id="username" class="form-control" required />
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="password" class="form-label">Password: *</label>
+        <input name="password" id="password" class="form-control" required type="password" />
+    </fieldset> 
+    <button class="macrobutton">
+        <i class="bi bi-person-fill-check"></i> Login
+    </button>
+</form>
+</div>
+</body>

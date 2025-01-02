@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/normalize.css" />
+    <link rel="stylesheet" href="/stylesheets/bootstrap-icons.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/javascripts/scripts.js" defer></script>
+  </head>
+  <body>
+    <nav>
+      <div class="Container">
+        <ul class="nav">
+          <a class="navBrand" href="/"><img src="/images/obj.png" height="80"></a>
+          
+          <li class="navItem"><a href="/posts"><h2>Goals</h2></a></li>
+          <li class="navItem"><a href="/nutrition"><h2>Nutrition</h2></a></li>
+          <li class="navItem"><form action="/profile/search" method="get" class="search-form">
+  <input
+    type="text"
+    name="q"
+    placeholder="Search for users..."
+    required
+  />
+  <button type="submit" class="navSearch">Search</button>
+</form>
+</li>
+
+          {{#if user}}
+            <div class="login"></div>
+            <li class="loggedIn">
+              <h2>Welcome, <a href="/profile/{{user._id}}">{{user.username}}</a></h2>
+            </li>
+
+          {{else}}
+            <div class="login">
+              <li class="navLogin"><a href="/auth/login"><h2>Login</h2></a></li>
+              <li class="navSignup"><a href="/auth/register"><h2>Sign up</h2></a></li>
+            </div>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+    {{{body}}}
+  </body>
+</html>

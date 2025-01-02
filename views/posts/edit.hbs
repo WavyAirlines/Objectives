@@ -1,0 +1,85 @@
+<h1 class="page-title">Edit Post</h1>
+<form method="post" class="edit-form">
+    <fieldset class="form-group">
+        <label for="movement" class="form-label">Movement: *</label>
+        <input 
+            name="movement" 
+            id="movement" 
+            class="form-control" 
+            type="text" 
+            placeholder="Enter movement (e.g., Squat, Bench Press, Deadlift)" 
+            required 
+            value="{{post.movement}}" 
+        />
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="timePeriod" class="form-label">Date: *</label>
+        <input 
+            name="timePeriod" 
+            id="timePeriod" 
+            class="form-control" 
+            type="date" 
+            required 
+            value="{{post.timePeriod}}" 
+        />
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="weight" class="form-label">Weight (lbs): *</label>
+        <input 
+            name="weight" 
+            id="weight" 
+            class="form-control" 
+            type="number" 
+            min="0" 
+            step="0.1" 
+            required 
+            value="{{post.weight}}" 
+        />
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="reps" class="form-label">Repetitions:</label>
+        <input 
+            name="reps" 
+            id="reps" 
+            class="form-control" 
+            type="string" 
+            min="0" 
+            step="1" 
+            value="{{post.reps}}" 
+        />
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="rpe" class="form-label">RPE (Rate of Perceived Exertion):</label>
+        <input 
+            name="rpe" 
+            id="rpe" 
+            class="form-control" 
+            type="number" 
+            min="0" 
+            max="10" 
+            step="0.1" 
+            value="{{post.rpe}}" 
+        />
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="comments" class="form-label">Comments:</label>
+        <textarea 
+            name="comments" 
+            id="comments" 
+            class="form-control">{{post.comments}}</textarea>
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="username" class="form-label">Username: *</label>
+        <input 
+            name="username" 
+            id="username" 
+            class="form-control" 
+            type="text" 
+            readonly 
+            value="{{post.username}}" 
+        />
+    </fieldset>
+    <button class="btn btn-primary">
+        <i class="bi bi-check-circle"></i> Save
+    </button>
+</form>

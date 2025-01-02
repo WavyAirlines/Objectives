@@ -1,0 +1,31 @@
+<section class="details">
+<h1>{{post.title}}</h1>
+<p><strong>Time Period:</strong> {{post.timePeriod}}</p>
+<p><strong>Weight:</strong> {{post.weight}}</p>
+<p><strong>Reps Completed:</strong> {{post.reps}}</p>
+<p><strong>sets completed</strong> {{post.sets}}</p>
+<p><strong>Movements:</strong> {{post.rpe}}</p>
+<p><strong>Comments</strong> {{post.comments}}</p>
+<p>{{post.body}}</p>
+<p>Posted: 
+    <span class="username">{{post.date}} </span>
+    by {{post.username}}
+</p>
+<div class="crudFunctions">
+<a href="/posts" class="detailBtn">
+    <i class="bi bi-skip-backward-fill"></i> Back to Budgets
+</a>
+<br>
+{{#if user}}
+    <a href="/posts/edit/{{post._id}}" class="detailBtn">
+        <i class="bi bi-pencil-square"></i> Edit
+    </a>
+    <br>
+    <a href="/posts/delete/{{post._id}}" class="detailBtn"
+        onclick="return confirm('For sure?');">
+        <i class="bi bi-x-circle"></i> Delete
+    </a>
+    <br>
+</div>
+</section>
+{{/if}}

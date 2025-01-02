@@ -1,0 +1,530 @@
+@import url("https://use.typekit.net/fqu6mnh.css");
+.regBody {
+  height: 100vh;
+  background-image: url("/images/LP-sectionBG.png");
+  background-repeat:round;
+  padding: 0;
+  margin: 0;
+}
+:root {
+  --primaryColour: #0077B6;
+  --secondaryColour: #00B4D8;
+  --accentColour:#8DAC62 ;
+  --primaryText: #8162ac;
+  --secondaryText:#684C8F ;
+}
+a {
+  color: #00B7FF;
+}
+h1{
+font-family: "vista-slab", serif;
+font-weight: 700;
+font-style: normal;
+}
+h2{
+font-family: "vista-slab", serif;
+font-weight: 400;
+font-style: normal;
+color: var(--secondaryText);
+}
+.nav{
+  margin:2em;
+  display: flex;
+  justify-content: space-between;
+list-style: none;
+}
+.nav input {
+  margin-top: 1em;
+  text-align: center;
+}
+a{
+  text-decoration: none;
+}
+.Main {
+  color: #5a4c4b;
+  font-size: 3em;
+  margin-left:3em;
+  margin-top:5em;
+  height: 50vh;
+  font-family: "vista-slab";
+}
+.lpSec {
+  display: flex;
+  justify-content: space-between;
+}
+.lpImg{
+  margin-right:13em;
+  margin-top:7em;
+}
+.lpSec2{
+  display: flex;
+  justify-content: space-between;
+}
+.cta {
+  width: 12em;
+  cursor: pointer;
+  color: white;
+  border: none;
+  font-size: 0.5em;
+  margin-left:5em;
+  border-radius: 20px;
+  background: rgb(255,0,128);
+background: linear-gradient(336deg, rgba(255,0,128,1) 0%, rgba(162,89,255,1) 100%);
+-webkit-box-shadow: 4px 6px 17px 7px rgba(162,89,255,0.7); 
+box-shadow: 4px 6px 17px 7px rgba(162,89,255,0.7);
+}
+.cta:hover{
+  background: rgb(162,89,255);
+background: linear-gradient(336deg, rgba(162,89,255,1) 0%, rgba(235,20,156,1) 78%, rgba(255,0,128,1) 100%);
+}
+.sec1 {
+  text-align: center;
+  color: #5a4c4b;
+  font-size: 1.5em;
+  margin-right:3em;
+  margin-top:13em;
+}
+.login {
+  display: flex;
+  padding-right:2em;
+}
+.navLogin {
+  margin-right:2em;
+}
+.LP {
+  background-image: url("/images/LP.png");
+  background-repeat:round;
+  padding: 0;
+  margin: 0;
+  height: 115vh;
+}
+.LP2{
+  height: 115vh;
+  background-image: url("/images/LP-sectionBG.png");
+  background-repeat:round;
+  padding: 0;
+  margin: 0;
+}
+body{
+  background-color: white;
+  background-repeat:round;
+  padding: 0;
+  margin: 0;
+}
+.search-input {
+  width: 33vh;
+  height: 2em;
+}
+.nutritionpg {
+  height: 100vh;
+  background-image: url("/images/LP-sectionBG.png");
+  background-repeat:round;
+  padding: 0;
+  margin: 0;
+}
+.budget-list {
+  /* background-image: url("/images/LP.png"); */
+  background-repeat:round;
+}
+.form-container{
+text-align: center;
+color: black;
+font-size: 2em;
+font-family: "vista-slab";
+}
+.form-container2{
+  display:flex;
+justify-content: center;
+font-size: 2em;
+font-family: "vista-slab";
+}
+.form-group{
+  border: none;
+}
+.register-btn{
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  font-size:0.7em;
+  cursor: pointer;
+  padding: 5px;
+}
+.register-btn:hover {
+  padding:7px;
+  transition:0.3s;
+}
+.post-fieldset {
+border: none;
+text-align: center;
+color: white;
+}
+.post-label{
+  font-size: 2em;
+  color: black;
+}
+.post-title{
+  text-align: center;
+}
+.crudFunctions {
+  display: flex; 
+}
+.crudFunctions > a {
+  color: black;
+  margin-right: 2em;
+  font-size:2em;
+  font-family: "vista-slab";
+}
+.readMore{
+  color: white;
+}
+.readMore:hover{
+  color: var(--secondaryColour);
+}
+.details {
+  margin-left: 2em;
+}
+.goals {
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: var(--primaryColour);
+  color: white;
+  border-radius: 15px;
+  display: grid;
+  grid-template-areas:
+    "title title"
+    "sets setsCompleted"
+    "movements movementsCompleted"
+    "muscles muscles";
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+small {
+  color: black;
+}
+.goals small {
+  color: black;
+}
+.goalTitle {
+  color: black;
+}
+.muscles {
+grid-area:muscles;
+}
+.movements {
+  grid-area:movements;
+}
+.sets{
+  grid-area:sets;
+}
+.movementsCompleted{
+  grid-area:movementsCompleted;
+}
+.setsCompleted{
+  grid-area:setsCompleted;
+}
+.movement-tabs {
+  text-align: center;
+}
+.profile-page-container p {
+  font-family: "vista-slab";
+  font-size: 1.2em;
+}
+.profileGoals {
+  padding-bottom:2em;
+  border-bottom: 1px solid white;
+  border-radius:5px;
+  /* width:33vh; */
+  background-color: var(--primaryColour);
+  padding:15px;
+  margin-bottom: 15px;
+}
+.profileGoals a {
+  color: white;
+}
+.profileGoals h3 {
+  color: white;
+}
+.profileGoals a:hover {
+  color: var(--secondaryColour);
+}
+.goal{
+  display: flex;
+  justify-content: center;
+}
+.goal-info {
+  padding:1em;
+  border-left:2px solid black;
+  color: white;
+}
+ul {
+  list-style: none;
+}
+.goal-title {
+  grid-area: title;
+  color: white;
+  font-size: 1.8em;
+  font-family: "vista-slab", serif;
+  text-align: center;
+}
+.goal-title a:hover{
+  color: var(--secondaryColour);
+}
+.goalNav {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding-bottom:1em;
+}
+.page-title {
+  text-align: center;
+  font-size: 3em;
+}
+.createGoal {
+  margin-left: 1em;
+  color: black;
+  font-size: 2em;
+}
+.loggedIn {
+  color: white;
+}
+
+.profile-section {
+  margin-bottom: 40px;
+}
+
+.profile-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.profile-input,
+.pr-input,
+.pr-reps-input,
+.split-input,
+.profile-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.profile-button {
+  padding: 10px 20px;
+  background-color: var(--primaryColour);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: block;
+  border-radius: 4px;
+  width: 33vh;
+}
+
+.profile-button:hover {
+  background-color: var(--secondaryColour);
+}
+
+.split-item,
+.pr-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.split-label,
+.pr-label {
+  width: 20%;
+}
+
+.pr-input,
+.pr-reps-input {
+  width: 30%;
+}
+
+.profile-textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.profilepg{
+  background-image: url("/images/LP-sectionBG.png");
+  background-repeat:round;
+  height: 105vh;
+}
+ .profilePosts{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2em;
+ } 
+ .movement-tab {
+    padding: 10px 20px;
+    background-color: var(--primaryColour);
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 2vh 2vh;
+    border-radius: 4px;
+  }
+  
+  .movement-tab:hover {
+    background-color: var(--secondaryColour);
+  }
+.profilePosts h1 {
+  color: var(--primaryText);
+}
+.macro-tracker-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.macro-tracker-container h1 {
+  color: var(--primaryText);
+}
+
+.select-food-btn {
+  border-radius: 5px;
+}
+
+.macrobutton{
+  margin:2px;
+  border-radius: 5px;
+  padding:.5em;
+  color: white;
+  background-color: var(--primaryColour);
+  border:none;
+}
+.macrobutton:hover{
+  position: relative;
+  bottom: 2px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+.navSearch {
+  margin:2px;
+  border-radius: 5px;
+  padding:.5em;
+  color: white;
+  background-color: var(--primaryText);
+  border:none;
+}
+.navSearch:hover {
+    position: relative;
+  bottom: 2px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+.profileLog {
+  background-color: var(--primaryColour);
+  margin-bottom:1em;
+  padding:1em;
+  border-radius:5px;
+}
+.profileLog h3 {
+  color: white;
+}
+.profileLog h4 {
+  color: white;
+}
+#food-query {
+  width: 33vh;
+}
+/* edit-profile */
+
+.label {
+  font-size:2em;
+  font-family: "vista-slab";
+  font-weight: 500;
+}
+input {
+  border-radius: 5px;
+  height: 2em;
+}
+form {
+  margin-bottom: 2em;
+}
+.macroTracking {
+  margin: 0 2em;
+}
+.macroTracking h1 {
+  color: var(--primaryText);
+}
+.lpimg1 {
+  height: 700px;
+  width: 700px;
+}
+@media (max-width: 600px) {
+  nav{
+    font-size:0.8em;
+   }
+   nav ul {
+    padding: 0%;
+    margin: 0%;
+   }
+   nav img {
+    width:30px;
+    height:30px;
+   } 
+  .profilepg {
+    font-size: 1.5em;
+    background-image: none;
+  }
+  .profilePosts{
+    display: block;
+    width: 100vh;
+    margin: 0 20vh;
+   } 
+   .profilePosts button {
+    padding: 1.5em;
+   }
+   .movement-tabs {
+  width: 100vh;
+  margin: 0;
+   }
+   .movementText{
+    font-size:1.5em;
+   }
+   .profile-title {
+    font-size:1.6em;
+    text-align: center;
+   }
+   .macroTracking {
+    width: 100vh;
+    margin: 0 20vh;
+    font-size: 1.5em;
+   }
+   .nutritionpg {
+    font-size:0.5em;
+    background-image: none;
+    padding: 0 1em;
+   }
+   .macrobutton { 
+    padding: 1.5em;
+   }
+   .food-item {
+    font-size: 1.5em;
+   }
+ .LP {
+  background-image: none;
+ }
+ .LP2 {
+  background-image: none;
+ }
+ .lpimg1{
+  width: 500px;
+  height: 500px;
+ }
+ .lpimg2{
+  margin-top: 10em;
+  width: 600px;
+  height: 600px;
+ }
+ .sec1 {
+  margin-top: 10em;
+  margin-left:2em;
+ }
+}

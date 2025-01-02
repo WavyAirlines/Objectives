@@ -1,0 +1,45 @@
+<h1 class="page-title">Movements</h1>
+<section class="goalNav">
+{{#if user}}
+    <i class="bi bi-plus-circle"><a class="createGoal" href="/posts/create"> Record a Movement</a></i>
+{{/if}}
+<div class="search-container">
+    <form action="/posts/search" method="post" class="search-form">
+        <label for="keyword" class="sr-only"></label>
+        <input name="keyword" id="keyword" class="search-input" placeholder="Search by keyword..." required />
+        <button class="btn btn-secondary">Search</button>
+    </form>
+</div>
+</section>
+<ul class="goal-list">
+    {{#if posts.length}}
+        {{#each posts}}
+            <li class="goal">
+                <div class="goals">
+                    <div class="goal-title">
+                        <i class="bi bi-file-earmark-text"></i> {{this.movement}} 
+                        <br>Posted by: <a href="profile/{{this.user}}">{{this.username}}</a>
+                        <br><small>{{this.timePeriod}}</small>
+                    </div>
+                    <div class="goal-details">
+                        <h1>Weight:</h1>
+                        <small>{{this.weight}}</small>
+                        <h1>Repetitions:</h1>
+                        <small>{{this.reps}}</small>
+                        {{#if this.rpe}}
+                        <h1>RPE:</h1>
+                        <small>{{this.rpe}}</small>
+                        {{/if}}
+                        <h1>Comments:</h1>
+                        <small>{{this.comments}}</small>
+                    </div>
+                    <section>
+                        <a href="/posts/details/{{this._id}}" class="readMore">Read More</a>
+                    </section>
+                </div>
+            </li>
+        {{/each}}
+    {{else}}
+        <p>No goals created yet.</p>
+    {{/if}}
+</ul>

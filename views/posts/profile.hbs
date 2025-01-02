@@ -1,0 +1,177 @@
+<body class="profilepg">
+  <section class="profilePosts">
+    
+  <div class="profile-page-container">
+      <!-- Profile Information -->
+  {{#if isOwnProfile}}
+    <a href="/profile/edit-profile" class="profile-button">Edit Profile</a>
+  {{else}}
+    <p>You are viewing someone else's profile</p>
+  {{/if}}
+
+
+    <div class="profile-section profile-status">
+      <h1 class="profile-title">Current Status</h1>
+      <p id="status-display">{{profile.status}}</p>
+    </div>
+
+    <div class="profile-section profile-split">
+      <h1 class="profile-title">Workout Split</h1>
+      <p id="split-display">
+        {{profile.split.monday}} | {{profile.split.tuesday}} | {{profile.split.wednesday}} |
+        {{profile.split.thursday}} | {{profile.split.friday}} | {{profile.split.saturday}} | {{profile.split.sunday}}
+      </p>
+    </div>
+
+    <div class="profile-section profile-prs">
+      <h1 class="profile-title">Your Personal Records (PRs)</h1>
+      <p>Squat: {{profile.prs.squat.weight}} lbs for {{profile.prs.squat.reps}} reps</p>
+      <p>Bench Press: {{profile.prs.benchPress.weight}} lbs for {{profile.prs.benchPress.reps}} reps</p>
+      <p>Deadlift: {{profile.prs.deadlift.weight}} lbs for {{profile.prs.deadlift.reps}} reps</p>
+    </div>
+    <div class="profile-section profile-motivation">
+<h1 class="profile-title">Motivation</h1>
+<p>What keeps me going to the gym is {{profile.motivation}}</p>
+    </div>
+       <div class="profile-section profile-favMovement">
+<h1 class="profile-title">Favourite Movement</h1>
+<p>My Favourite movement is {{profile.favoriteExercises}}</p>
+    </div>
+       <div class="profile-section profile-exp">
+<h1 class="profile-title">Experience</h1>
+<p>I have been lifting for {{profile.experience}} years</p>
+    </div>
+
+  </div>
+  <div class="movement-tabs">
+    <h1 class="profile-title">Movements</h1>
+    <p class="movementText">Select a movement to display your progressive overload in or log a movement <a href="/nutrition">here</a></p>
+      {{#each movements}}
+        <button class="movement-tab" onclick="updateChart('{{this}}')">{{this}}</button>
+      {{/each}}
+    </div>
+
+    <!-- Chart Section -->
+    <iframe id="progressive-overload-chart"
+            style="background: #FFFFFF; border: none; border-radius: 2px; box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);"
+            width="640" height="480"
+            src="{{chartUrl}}" allowfullscreen>
+    </iframe>
+  </section>
+
+  <!-- Macro Tracking Section -->
+  <section class="macroTracking">
+    <h1 class="profile-title">Daily Food Log</h1>
+    <!-- Date Picker for Food Log -->
+    <div class="date-picker">
+      <label for="logDate">Select a Date:</label>
+      <input type="date" id="logDate" />
+      <button onclick="handleFetchDailyLog()" class="macrobutton">Fetch Log</button>
+    </div>
+
+    <!-- Food Log Display -->
+    <div id="logContainer">
+      <p>Select a date to view your daily food log. or Log your food <a href="/nutrition">here</a></p>
+    </div>
+  </section>
+
+
+
+  <!-- Script to Handle Chart and Food Log -->
+  <script>
+    function updateChart(movement) {
+      const chartIframe = document.getElementById('progressive-overload-chart');
+      const userId = "{{profile.user._id}}"; // User ID from view
+      const chartBaseUrl = "https://charts.mongodb.com/charts-project-0-yprnfpd/embed/charts?id=006bb4ef-87bb-408e-9061-1ce1aad4f8f7";
+      
+      const filter = JSON.stringify({ user: { $oid: userId }, movement });
+
+      const newChartUrl = `${chartBaseUrl}&filter=${encodeURIComponent(filter)}&theme=light`;
+      chartIframe.src = newChartUrl;
+
+      chartIframe.onerror = (err) => console.error("Error loading chart:", err);
+    }
+
+    // Fetch Daily Food Log
+    async function handleFetchDailyLog() {
+      const dateInput = document.getElementById('logDate');
+      const selectedDate = dateInput.value;
+
+      if (!selectedDate) {
+        alert('Please select a date.');
+        return;
+      }
+
+      try {
+        await fetchDailyLog(selectedDate);
+      } catch (error) {
+        console.error('Error fetching daily log:', error);
+        alert('Failed to fetch the food log. Please try again later.');
+      }
+    }
+
+    // Existing fetchDailyLog function
+    async function fetchDailyLog(date) {
+  const formattedDate = new Date(date).toISOString().split('T')[0];
+  const response = await fetch(`/food-log/daily?date=${formattedDate}`);
+  
+  const log = await response.json();
+  console.log('Fetched log from server:', log);
+
+  if (response.ok) {
+    const logContainer = document.getElementById('logContainer');
+
+    // Group duplicate foods by name and macros
+    const foodCountMap = {};
+    log.foods.forEach(food => {
+      const key = `${food.name}-${food.calories}-${food.protein}-${food.carbs}-${food.fat}`;
+      if (foodCountMap[key]) {
+        foodCountMap[key].count += 1;
+      } else {
+        foodCountMap[key] = { ...food, count: 1 };
+      }
+    });
+
+    // Calculate totals for fats, carbs, protein, and calories
+    let totalCalories = 0, totalProtein = 0, totalCarbs = 0, totalFat = 0;
+
+    const groupedFoods = Object.values(foodCountMap);
+    groupedFoods.forEach(food => {
+      totalCalories += food.calories * food.count || 0;
+      totalProtein += food.protein * food.count || 0;
+      totalCarbs += food.carbs * food.count || 0;
+      totalFat += food.fat * food.count || 0;
+    });
+
+    // Create the summary section
+    const summaryHtml = `
+      <div class="profileLog">
+        <h3>Daily Intake Summary</h3>
+        <p>Calories: ${totalCalories}</p>
+        <p>Protein: ${totalProtein}g</p>
+        <p>Carbs: ${totalCarbs}g</p>
+        <p>Fat: ${totalFat}g</p>
+      </div>
+    `;
+
+    // Create the grouped food logs section
+    const logsHtml = groupedFoods
+      .map(food => {
+        const countLabel = food.count > 1 ? ` (${food.count}x)` : '';
+        return `<div class="profileLog">
+          <h4>${food.name || 'No Name'}${countLabel}</h4>
+          <p>${food.description || 'No Description'}</p>
+          <p>Calories: ${food.calories}, Protein: ${food.protein}g, Carbs: ${food.carbs}g, Fat: ${food.fat}g</p>
+        </div>`;
+      })
+      .join('');
+
+    // Combine the summary and logs
+    logContainer.innerHTML = summaryHtml + logsHtml;
+  } else {
+    alert('No food log found for this date');
+  }
+}
+
+  </script>
+</body>

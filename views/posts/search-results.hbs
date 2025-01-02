@@ -1,0 +1,13 @@
+<h1>Search Results for "{{searchQuery}}"</h1>
+
+{{#if users.length}}
+  <ul>
+    {{#each users}}
+      <li>
+        <a href="/profile/{{this._id}}">{{this.username}}</a>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No users found matching "{{searchQuery}}".</p>
+{{/if}}

@@ -1,0 +1,43 @@
+<h1 class="post-title">Create New Goal</h1>
+<form class="post-form" method="post">
+    <fieldset class="post-fieldset">
+        <label for="username" class="post-label">Username: *</label>
+        <input name="username" id="username" class="post-input" type="hidden" value="{{user.username}}" />
+        <input name="usernameDisplay" id="usernameDisplay" class="post-input" required disabled value="{{user.username}}" />
+    </fieldset>
+    
+    <fieldset class="post-fieldset">
+        <label for="movement" class="goalTitle">Movement: *</label><br>
+        <input name="movement" id="movement" class="post-input" placeholder="Enter the lift (e.g., Squat)" required />
+    </fieldset>
+    
+    <fieldset class="post-fieldset">
+        <label for="timePeriod" class="post-label">Date: *</label>
+        <input name="timePeriod" type="date" id="timePeriod" class="post-select" required>
+    </fieldset>
+    
+    <fieldset class="post-fieldset">
+        <label for="weight" class="post-label">Weight (kg/lbs): *</label>
+        <input name="weight" id="weight" class="post-input" placeholder="Enter the weight lifted" required />
+    </fieldset>
+    
+    <fieldset class="post-fieldset">
+        <label for="reps" class="post-label">Repetitions: *</label>
+        <input name="reps" id="reps" class="post-input" placeholder="Enter the number of reps performed" required />
+    </fieldset>
+    
+    <fieldset class="post-fieldset">
+        <label for="rpe" class="post-label">RPE (Rate of Perceived Exertion):</label><br>
+        <input name="rpe" id="rpe" class="post-input" placeholder="Enter the RPE (optional)" />
+    </fieldset>
+
+        <fieldset class="post-fieldset">
+        <label for="comments" class="post-label">Comments/Notes:</label><br>
+        <textarea name="comments" id="comments" class="post-textarea" placeholder="Add any additional notes or observations"></textarea>
+    </fieldset>
+
+    
+    <button class="post-btn">
+        <i class="bi bi-plus-circle"></i> Save
+    </button>
+</form>

@@ -1,0 +1,65 @@
+<body>
+  <div class="edit-profile-page-container">
+    <h1>Edit Profile</h1>
+
+    <!-- Combined Edit Profile Form -->
+    <form action="/profile/update-all" method="POST">
+      <!-- Status -->
+      <label for="status" class="label">Status:</label>
+      <input type="text" name="status" id="status" value="{{profile.status}}">
+
+      <!-- Workout Split -->
+      <h2>Workout Split</h2>
+      <label for="monday" class="label">Monday:</label>
+      <input type="text" name="split.monday" id="monday" value="{{profile.split.monday}}">
+      <label for="tuesday" class="label">Tuesday:</label>
+      <input type="text" name="split.tuesday" id="tuesday" value="{{profile.split.tuesday}}">
+      <label for="wednesday" class="label">Wednesday:</label>
+      <input type="text" name="split.wednesday" id="wednesday" value="{{profile.split.wednesday}}">
+      <label for="thursday" class="label">Thursday:</label>
+      <input type="text" name="split.thursday" id="thursday" value="{{profile.split.thursday}}">
+      <label for="friday" class="label">Friday:</label>
+      <input type="text" name="split.friday" id="friday" value="{{profile.split.friday}}">
+      <label for="saturday" class="label">Saturday:</label>
+      <input type="text" name="split.saturday" id="saturday" value="{{profile.split.saturday}}">
+      <label for="sunday" class="label">Sunday:</label>
+      <input type="text" name="split.sunday" id="sunday" value="{{profile.split.sunday}}">
+
+      <!-- PRs -->
+      <h2>Personal Records (PRs)</h2>
+      <label for="squatWeight" class="label">Squat (Weight in lbs):</label>
+      <input type="number" name="prs.squat.weight" id="squatWeight" value="{{profile.prs.squat.weight}}">
+      <label for="squatReps" class="label">Squat Reps (e.g., 5,3,1):</label>
+      <input type="text" name="prs.squat.reps" id="squatReps" value="{{profile.prs.squat.reps}}">
+
+      <label for="benchPressWeight" class="label">Bench Press (Weight in lbs):</label>
+      <input type="number" name="prs.benchPress.weight" id="benchPressWeight" value="{{profile.prs.benchPress.weight}}">
+      <label for="benchPressReps" class="label">Bench Press Reps (e.g., 8,6,4):</label>
+      <input type="text" name="prs.benchPress.reps" id="benchPressReps" value="{{profile.prs.benchPress.reps}}">
+
+      <label for="deadliftWeight" class="label">Deadlift (Weight in lbs):</label>
+      <input type="number" name="prs.deadlift.weight" id="deadliftWeight" value="{{profile.prs.deadlift.weight}}">
+      <label for="deadliftReps" class="label">Deadlift Reps (e.g., 6,4,2):</label>
+      <input type="text" name="prs.deadlift.reps" id="deadliftReps" value="{{profile.prs.deadlift.reps}}">
+    <br>
+      <!-- Favorite Exercises -->
+      <label for="favoriteExercises" class="label">Favorite Exercises:</label>
+      <input type="text" name="favoriteExercises" id="favoriteExercises" value="{{profile.favoriteExercises}}">
+
+      <!-- Experience -->
+      <br>
+      <label for="experience" class="label">Experience:</label>
+      <input type="text" name="experience" id="experience" value="{{profile.experience}}">
+      <br>
+      <!-- Motivation -->
+      <label for="motivation" class="label">Motivation:</label>
+      <input type="text" name="motivation" id="motivation" value="{{profile.motivation}}">
+
+      <!-- Submit Button -->
+      <button type="submit">Save All Changes</button>
+    </form>
+
+    <!-- Back to Profile Button -->
+    <a href="/profile/{{profile.user._id}}" class="profile-button">Back to Profile</a>
+  </div>
+</body>

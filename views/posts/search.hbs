@@ -1,0 +1,19 @@
+<h1>Search Results for: {{keyword}}</h1>
+<a href="/posts/create">
+Create New Post
+</a>
+<ul>
+    {{#each posts}}
+        <li>
+            <h5><i></i> {{this.title}}</h5>
+            <p>{{this.body}}</p>
+            <p>Posted: 
+                <span>{{this.date}} </span>
+                by {{this.username}}
+            </p>
+            <a href="/posts/details/{{this._id}}">
+                Read More
+            </a>
+        </li>      
+    {{/each}}
+</ul>
