@@ -21,6 +21,20 @@ const fatSecretController = require('./controllers/fatSecret');
 const foodLogRoutes = require('./models/foodRoutes');
 var app = express();
 
+// Load environment variables if not in production
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
+
+// MongoDB connection
+mongoose.connect(process.env.CONNECTION_STRING, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000, // 30 seconds timeout
+})
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error('MongoDB connection error:', err));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -31,21 +45,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Load environment variables if not in production
-if (process.env.NODE_ENV != 'production') {
-  require('dotenv').config();
-}
-
-// MongoDB connection before controllers included
-mongoose.connect(process.env.CONNECTION_STRING)
-  .then(() => { console.log('Connected to MongoDb') })
-  .catch(() => { console.log('Connection to MongoDb Failed') });
-
+// Session setup
 app.use(session({
   secret: process.env.SESSION_SECRET || 'your_secure_string',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false } // Set secure: true in production
+  cookie: { secure: process.env.NODE_ENV === 'production' }
 }));
 
 // Passport.js setup
@@ -68,29 +73,30 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/posts', posts);
 app.use('/auth', auth);
-app.use('/profile', Profile);
+app.use('/profile', profile);
 app.use('/fatsecret', fatSecretRoutes);
 app.get('/fatsecret/token', fatSecretController.getToken);
 app.get('/nutrition', fatSecretController.renderNutritionPage);
 app.get('/food-search', fatSecretController.searchFood);
 app.use('/food-log', foodLogRoutes);
 
-
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   res.status(err.status || 500);
   res.render('error');
 });
 
-app.listen(8000, () => {
-  console.log("Server started on http://localhost:8000");
+// Dynamic port for Render
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+  console.log(`Server started on http://localhost:${PORT}`);
 });
 
 module.exports = app;
