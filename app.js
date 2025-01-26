@@ -27,13 +27,9 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // MongoDB connection
-mongoose.connect(process.env.CONNECTION_STRING, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 30000, // 30 seconds timeout
-})
+mongoose.connect(process.env.CONNECTION_STRING)
   .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('MongoDB connection error:', err));
+  .catch(err => console.error('Connection to MongoDB failed', err));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,12 +42,19 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Session setup
+const MongoStore = require('connect-mongo');
+
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'your_secure_string',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: process.env.NODE_ENV === 'production' }
+  store: MongoStore.create({
+    mongoUrl: process.env.CONNECTION_STRING,
+    collectionName: 'sessions',
+  }),
+  cookie: { secure: process.env.NODE_ENV === 'production' },
 }));
+
 
 // Passport.js setup
 app.use(passport.initialize());
@@ -98,5 +101,6 @@ const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
 });
+
 
 module.exports = app;
