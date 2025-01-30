@@ -45,16 +45,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 const MongoStore = require('connect-mongo');
 
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET || 'fallbackSecretForDevelopmentOnly',
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
     mongoUrl: process.env.CONNECTION_STRING,
     collectionName: 'sessions',
   }),
-  cookie: { secure: process.env.NODE_ENV === 'production' },
+  cookie: { 
+    secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+    maxAge: 1000 * 60 * 60 * 24 // 1 day
+  },
 }));
-
 
 // Passport.js setup
 app.use(passport.initialize());
